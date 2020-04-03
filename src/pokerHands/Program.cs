@@ -9,19 +9,12 @@ namespace pokerHands
         {
             Console.WriteLine("Hello to Poker hands");
 
-            //GameMachine gm = new GameMachine("player1", "player2");
-
-            //gm.AddCardsToDeck();
-
+            GameMachine gm = new GameMachine("player1", "player2");
+            //gm.DealCards();
             FileReader fr = new FileReader();
-            List<Card> cards = fr.ReadCards();
+            fr.ReadCards();
 
-            foreach(Card c in cards)
-            {
-                System.Console.Write(c.Value);
-            }
-
-            
+        
         }
     }
 }

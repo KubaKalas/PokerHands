@@ -7,10 +7,7 @@ namespace pokerHands
     {
         
         public string name { get; }
-        public int wins 
-        {   get => wins;
-            set => wins++; 
-        }
+        public int wins {get; set;}
        
         public Player(string name)
         {

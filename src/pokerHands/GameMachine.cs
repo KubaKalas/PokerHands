@@ -7,74 +7,56 @@ namespace pokerHands
     public class GameMachine
     {
 
-        private Player player1;
-        private Player player2;
+        Player player1;
+        Player player2;
         private List<Card> player1Cards;
         private List<Card> player2Cards;
-        private List<Card> deck;
+        public List<Card> deck {get;set;}
         FileReader fileReader;
-        Card card = new Card();
 
+        
         public GameMachine(string player1Name, string player2Name)
         {
 
             fileReader = new FileReader();
-
             player1 = new Player(player1Name);
             player2 = new Player(player2Name);
-
             player1Cards = new List<Card>();
             player2Cards = new List<Card>();
-            deck = new List<Card>();
-
+            deck = fileReader.ReturnDeck();
             
-           // card.value = (int)Value.Four;
-
         }
 
         public void addPoint(Player player)
         {   
-
-            System.Console.WriteLine($"{nameof(player)} won");
-            player.wins++;
             
         }
-        public void ClearCards()
+
+        public void ClearPlayerCards()
         {
             player1Cards.Clear();
             player2Cards.Clear();
-        }
-
-        public void AddCardsToDeck()
-        {
 
         }
-
-
-
-
-
-
-
-
-
-
-/*
-        public void dealCards()
+        public void DealCards()
         {
-             deck = fileReader.ReturnHands();
-
-            for(int i = 0; i < deck.Count; i++)
+            for(int i = 0; i < deck.Count; i+=10)
             {
-                player1Cards = deck.
+                player1Cards = deck.Take(5).ToList();
+                //player2Cards = deck.Skip(5).Take(5).ToList();
+
+                System.Console.WriteLine(CheckForOnePair(player1Cards));
+
             }
+            
         }
+
 
         public void EvaluateCards(List<Card> p1C, List<Card> p2C)
         {
 
         }
-
+        /*
         methods for checking all the possible cards a player may have
         1.High Card
         2. One Pairs
@@ -91,22 +73,19 @@ namespace pokerHands
         public void CheckForHighCard(List<Card> cards)
         {
 
-            if(cards.Count >= 0 && cards.Count <=5)
-            {
             
-            }
 
         }
 
-        public void CheckForOnePair()
+        public bool CheckForOnePair(List<Card> cards)
         {
-
+            return cards.GroupBy(v => v.Value).Where(z => z.Count() == 2).Count() == 1;
 
         }
 
-        public void CheckForTwoPairs()
+        public bool CheckForTwoPairs()
         {
-
+            return player1Cards.GroupBy(v => v.Value).Where(z => z.Count() == 2).Count() == 2;
         }
 
         public void CheckForThreeOfAKind()

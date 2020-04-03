@@ -8,11 +8,6 @@ namespace pokerHands
     {
         None, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace
     }
-
-    /*
-    cast to int
-    */
-
     public class Card
     {
         public Suit Suit{ get; set; }
