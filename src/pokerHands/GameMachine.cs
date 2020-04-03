@@ -23,8 +23,9 @@ namespace pokerHands
             player2 = new Player(player2Name);
             player1Cards = new List<Card>();
             player2Cards = new List<Card>();
+            fileReader.ReadCards();
             deck = fileReader.ReturnDeck();
-            
+
         }
 
         public void addPoint(Player player)
@@ -35,20 +36,27 @@ namespace pokerHands
         public void ClearPlayerCards()
         {
             player1Cards.Clear();
-            player2Cards.Clear();
+            //player2Cards.Clear();
+        }
+
+
+        public void CheckCards()
+        {
+
+
 
         }
         public void DealCards()
         {
-            for(int i = 0; i < deck.Count; i+=10)
-            {
-                player1Cards = deck.Take(5).ToList();
-                //player2Cards = deck.Skip(5).Take(5).ToList();
+                for(int i = 0;i < 5; i++)
+                {
+                    player1Cards.Add(deck[i]);
+                
+                }
+                    System.Console.WriteLine($"Checking for one pair {CheckForOnePair(player1Cards)}");
+                    System.Console.WriteLine($"Checking for two paids {CheckForTwoPairs(player1Cards)}");
 
-                System.Console.WriteLine(CheckForOnePair(player1Cards));
-
-            }
-            
+                    ClearPlayerCards();
         }
 
 
@@ -69,28 +77,24 @@ namespace pokerHands
         9. Straight Flush
         10.Royal Flush
         */
-        
-        public void CheckForHighCard(List<Card> cards)
+        public int CheckForHighCard(List<Card> cards)
         {
-
-            
-
+            return (int)cards.Max(m => m.Value);
         }
 
         public bool CheckForOnePair(List<Card> cards)
         {
-            return cards.GroupBy(v => v.Value).Where(z => z.Count() == 2).Count() == 1;
-
+            return cards.GroupBy(v => v.Value).Where(z => (int)z.Count() == 2).Count() == 1;
         }
 
-        public bool CheckForTwoPairs()
+        public bool CheckForTwoPairs(List<Card> cards)
         {
-            return player1Cards.GroupBy(v => v.Value).Where(z => z.Count() == 2).Count() == 2;
+            return cards.GroupBy(v => v.Value).Where(z => (int)z.Count() == 2).Count() == 2;
         }
 
-        public void CheckForThreeOfAKind()
+        public bool CheckForThreeOfAKind(List<Card> cards)
         {
-
+            return cards.GroupBy(v => v.Value).Where(z => z.Count() == 4).Any();
         }
 
         public void CheckForStraight()
@@ -108,9 +112,10 @@ namespace pokerHands
 
         }
 
-        public void CheckForFourOfAKind()
+        public bool CheckForFourOfAKind(List<Card> cards)
         {
 
+            return cards.GroupBy(v => v.Value).Where(z => z.Count() == 4).Any();
 
         }
 

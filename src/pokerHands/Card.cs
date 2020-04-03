@@ -13,5 +13,17 @@ namespace pokerHands
         public Suit Suit{ get; set; }
         public Value Value { get; set; }
 
+
+
+        public string returnString()
+        {
+            return this.Value + " " + this.Suit;
+        }
+
+        
     }
+
+
+    
+
 }

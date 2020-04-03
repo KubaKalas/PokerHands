@@ -34,20 +34,19 @@ namespace pokerHands
         }
 
         public List<Card> ReturnDeck() => cards;
+    
 
         //receives the line of text and converts it to a Card type
         //sets the enum Value and Suit for Card type
         public void ReadCardFromTxtFile(string txtLine)
         {
-
-            Card card = new Card();
             string[] parts = txtLine.Split(" ");
-            
             foreach(string s in parts)
-            {
+            {   
+                Card card = new Card();
                 string value = s[0].ToString();
                 string suit = s[1].ToString();
-            
+
                 switch(value)
                 {
                     case "2":
@@ -108,6 +107,7 @@ namespace pokerHands
                         card.Suit = Suit.Hearts;
                         break;
                 }
+
                 cards.Add(card);
             }
         }
