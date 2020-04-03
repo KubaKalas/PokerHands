@@ -1,0 +1,12 @@
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/bin/Debug/netcoreapp3.1/pokerHands.deps.json
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/bin/Debug/netcoreapp3.1/pokerHands.runtimeconfig.json
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/bin/Debug/netcoreapp3.1/pokerHands.runtimeconfig.dev.json
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/bin/Debug/netcoreapp3.1/pokerHands.dll
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/bin/Debug/netcoreapp3.1/pokerHands.pdb
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/obj/Debug/netcoreapp3.1/pokerHands.csprojAssemblyReference.cache
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/obj/Debug/netcoreapp3.1/pokerHands.csproj.CoreCompileInputs.cache
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/obj/Debug/netcoreapp3.1/pokerHands.AssemblyInfoInputs.cache
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/obj/Debug/netcoreapp3.1/pokerHands.AssemblyInfo.cs
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/obj/Debug/netcoreapp3.1/pokerHands.dll
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/obj/Debug/netcoreapp3.1/pokerHands.pdb
+/Users/jakubkalas/Desktop/C#/PokerHands/src/pokerHands/obj/Debug/netcoreapp3.1/pokerHands.genruntimeconfig.cache
