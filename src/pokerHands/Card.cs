@@ -15,8 +15,8 @@ namespace pokerHands
 
     public class Card
     {
-        public Suit Suit{ get => Suit; set { Suit = value;} }
-        public Value Value { get => Value; set { Value = value; } }
+        public Suit Suit{ get; set; }
+        public Value Value { get; set; }
 
     }
 }

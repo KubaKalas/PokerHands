@@ -51,6 +51,7 @@ namespace pokerHands
           System.Console.WriteLine("Here 3");
 
           System.Console.WriteLine(value);
+          System.Console.WriteLine(suit);
 
             switch(value)
             {
