@@ -6,13 +6,15 @@ namespace pokerHands
     public class Player
     {
         
-        public string name { get; }
-        public int wins {get; set;}
+        private string name;
+        public string Name { get; set;}
+        private int wins;
+        public int Wins {get; set;}
        
         public Player(string name)
         {
-            this.name = name;
-            this.wins = 0;
+            this.Name = name;
+            this.Wins = 0;
         }
 
     }

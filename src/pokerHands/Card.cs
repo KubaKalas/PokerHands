@@ -17,11 +17,5 @@ namespace pokerHands
         {
             return this.Value + " " + this.Suit;
         }
-
-        
     }
-
-
-    
-
 }

@@ -28,7 +28,7 @@ namespace pokerHands
 
         public void AddPoint(Player player)
         {   
-            player.wins += 1;
+            player.Wins += 1;
         }
 
         public void ClearPlayerCards()
@@ -41,25 +41,32 @@ namespace pokerHands
         {
                 //looping over the deck, each players is being dealt 5 cards each
                 //index is incremented by 5
-            for(int index = 0; index < deck.Count; index+=5)
+
+                System.Console.WriteLine("Main deck size is " + deck.Count);
+                
+            for(int index = 0; index < deck.Count - 5; index+=5)
             {
                 //using the Linq Skip and Take to deal each player 5 card
                 //first player initially skips zero cards and takes first 5
                 //second player skips five card and take next 5 cards.
-                player1Cards = deck.Skip(0 + index).Take(5 + index).ToList();
-                player2Cards = deck.Skip(5 + index).Take(5 + index).ToList();
+                player1Cards = deck.Skip(0 + index).Take(5).ToList();
+                player2Cards = deck.Skip(5 + index).Take(5).ToList();
+
+                
+                System.Console.WriteLine($"Player 1 deck size {player1Cards.Count}");
+                System.Console.WriteLine($"Player 2 deck size {player2Cards.Count}");
 
                 AddPoint(EvaluateCards(player1Cards,player2Cards));
 
+                //ClearPlayerCards();
                 ClearPlayerCards();
+               
             }
-            return player1.wins > player2.wins ? $"Player 1 won! \n With {player1.wins} wins" : $"Player 2 won! \n With {player2.wins} wins";
+            return player1.Wins > player2.Wins ? $"Player 1 won! \n With {player1.Wins} wins" : $"Player 2 won! \n With {player2.Wins} wins";
         }
-
-
         public Player EvaluateCards(List<Card> p1C, List<Card> p2C)
         {
-            if(CheckForRoyalFlush(p1C) && CheckForRoyalFlush(p2C))
+            if(CheckForRoyalFlush(p1C) == CheckForRoyalFlush(p2C))
                 if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                     return player1;
                 else
@@ -68,25 +75,28 @@ namespace pokerHands
                 return player1;
             else if(!(CheckForRoyalFlush(p1C) && (CheckForRoyalFlush(p2C))))
                 return player2;
-            else if(CheckForStraightFlush(p1C) && CheckForStraightFlush(p2C))
+
+            else if(CheckForStraightFlush(p1C) == CheckForStraightFlush(p2C))
                 if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                     return player1;
                 else
                     return player2;
             else if(CheckForStraightFlush(p1C) && !(CheckForStraightFlush(p2C)))
                 return player1;
-            else if(!(CheckForRoyalFlush(p1C) && (CheckForRoyalFlush(p2C))))
+            else if(!(CheckForStraightFlush(p1C) && (CheckForStraightFlush(p2C))))
                 return player2;
-            else if(CheckForFourOfAKind(p1C) && CheckForFourOfAKind(p2C))
+
+            else if(CheckForFourOfAKind(p1C) == CheckForFourOfAKind(p2C))
                 if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                     return player1;
                 else
                     return player2;
             else if(CheckForFourOfAKind(p1C) && !(CheckForFourOfAKind(p2C)))
                 return player1;
-            else if(!(CheckForRoyalFlush(p1C) && (CheckForRoyalFlush(p2C))))
+            else if(!(CheckForFourOfAKind(p1C) && (CheckForFourOfAKind(p2C))))
                 return player2;
-            else if(CheckForFullHouse(p1C) && CheckForFullHouse(p2C))
+
+            else if(CheckForFullHouse(p1C) == CheckForFullHouse(p2C))
                 if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                     return player1;
                 else
@@ -94,8 +104,9 @@ namespace pokerHands
             else if(CheckForFullHouse(p1C) && !(CheckForFullHouse(p2C)))
                 return player1;
             else if(!(CheckForFullHouse(p1C) && (CheckForFullHouse(p2C))))
-                return player2;           
-            else if(CheckForFlush(p1C) && CheckForFlush(p2C))           
+                return player2;  
+
+            else if(CheckForFlush(p1C) == CheckForFlush(p2C))           
                 if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                     return player1;
                 else
@@ -103,8 +114,9 @@ namespace pokerHands
             else if(CheckForFlush(p1C) && !(CheckForFlush(p2C)))           
                 return player1;
             else if(!(CheckForFlush(p1C) && (CheckForFlush(p2C))))           
-                return player2;           
-            else if(CheckForStraight(p1C) && CheckForStraight(p2C))          
+                return player2;  
+
+            else if(CheckForStraight(p1C) == CheckForStraight(p2C))          
                 if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                     return player1;
                 else
@@ -112,8 +124,9 @@ namespace pokerHands
             else if(CheckForStraight(p1C) && !(CheckForStraight(p2C)))        
                 return player1;
             else if(!(CheckForStraight(p1C) && (CheckForStraight(p2C))))       
-                return player2;           
-            else if(CheckForThreeOfAKind(p1C) && CheckForThreeOfAKind(p2C))          
+                return player2;   
+
+            else if(CheckForThreeOfAKind(p1C) == CheckForThreeOfAKind(p2C))          
                 if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                     return player1;
                 else
@@ -121,8 +134,9 @@ namespace pokerHands
             else if(CheckForThreeOfAKind(p1C) && !(CheckForThreeOfAKind(p2C)))          
                 return player1;
             else if(!(CheckForThreeOfAKind(p1C) && (CheckForThreeOfAKind(p2C))))         
-                return player2;          
-            else if(CheckForTwoPairs(p1C) && CheckForTwoPairs(p2C))          
+                return player2;  
+
+            else if(CheckForTwoPairs(p1C) == CheckForTwoPairs(p2C))          
                 if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                     return player1;
                 else
@@ -131,7 +145,8 @@ namespace pokerHands
                 return player1;
             else if(!(CheckForTwoPairs(p1C) && (CheckForTwoPairs(p2C))))
                 return player2;
-            else if(CheckForOnePair(p1C) && CheckForOnePair(p2C))
+
+            else if(CheckForOnePair(p1C) == CheckForOnePair(p2C))
                 if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                     return player1;
                 else
@@ -140,6 +155,7 @@ namespace pokerHands
                 return player1;
             else if(!(CheckForOnePair(p1C) && (CheckForOnePair(p2C))))
                 return player2;
+
             if(CheckForHighCard(p1C) > CheckForHighCard(p2C))
                 return player1;
             else 
@@ -168,7 +184,7 @@ namespace pokerHands
 
         public int CheckForHighCard(List<Card> cards)
         {
-            return (int)cards.Max(m => m.Value);
+            return (int)cards.Max(m => (int)m.Value);
         }
 
         public bool CheckForOnePair(List<Card> cards)
@@ -183,7 +199,7 @@ namespace pokerHands
 
         public bool CheckForThreeOfAKind(List<Card> cards)
         {
-            return cards.GroupBy(v => v.Value).Where(z => z.Count() == 4).Any();
+            return cards.GroupBy(v => v.Value).Where(z => z.Count() == 3).Any();
         }
 
         public bool CheckForStraight(List<Card> cards)
