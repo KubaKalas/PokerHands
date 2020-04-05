@@ -7,7 +7,6 @@ namespace pokerHands
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello to Poker hands");
 
             GameMachine gm = new GameMachine("player1", "player2");
 

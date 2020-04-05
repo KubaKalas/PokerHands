@@ -7,13 +7,13 @@ namespace pokerHands
     {
         
         private string name;
-        public string Name { get; set;}
+
         private int wins;
-        public int Wins {get; set;}
+        public int Wins {get => wins; set => wins = value;}
        
         public Player(string name)
         {
-            this.Name = name;
+            this.name = name;
             this.Wins = 0;
         }
 
