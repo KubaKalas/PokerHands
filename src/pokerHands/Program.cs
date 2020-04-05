@@ -10,9 +10,8 @@ namespace pokerHands
             Console.WriteLine("Hello to Poker hands");
 
             GameMachine gm = new GameMachine("player1", "player2");
-            gm.DealCards();
-            
 
+            System.Console.WriteLine(gm.DealCards());
         
         }
     }
